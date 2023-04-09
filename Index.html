@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date</title>
+</head>
+<style>
+    body {
+  background-image: url("nick-fewings-Uz9w7XZnEkA-unsplash.jpg");
+}
+    #dday {
+      font-size: 150px;
+      text-align: center;
+      color:white;
+      line-height: 1;
+      margin-top: 0;
+    }
+    #time {
+        text-align: center;
+        font-weight: bold;
+        color:white;
+        margin-top: 230px;
+    }
+    
+  </style>
+
+<body>
+    <p id="time">time</p>
+    <p id="dday">크리스마스까지</p>
+</body>
+<script>
+      function calculateDday(targetDate) {
+    const oneDay = 1000 * 60 * 60 * 24;
+    const today = new Date().getTime();
+    const target = new Date(targetDate).getTime();
+    const diff = target - today;
+    const dday = Math.ceil(diff / oneDay);
+    return dday;
+  }
+let dayArray = ["일","월","화", "수", "목", "금", "토"];
+let myDate;
+let year;
+let month;
+let date;
+let day;
+let hour;
+let minute;
+let second;
+    setInterval(function () {
+        myDate = new Date();
+        year = myDate.getFullYear() + "년 ";
+        month = myDate.getMonth() + 1 + "월 ";
+        date = myDate.getDate() + "일 ";
+        day = dayArray[myDate.getDay()]+ "요일 ";
+        hour = myDate.getHours() + ": ";
+        minute = myDate.getMinutes() + ": ";
+        second = myDate.getSeconds();
+        document.getElementById("time").innerText = year + month + date + day + hour + minute + second;
+
+        const targetDate = "2023-12-25";
+        const dday = calculateDday(targetDate);
+        const ddayStr = (dday > 0) ? `D-${dday}` : `D+${Math.abs(dday)}`;
+        document.getElementById("dday").innerText = ddayStr;
+        }, 1000);
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</html>
